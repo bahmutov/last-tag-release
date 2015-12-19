@@ -2,9 +2,9 @@
   "name": "last-tag-release",
   "version": "1.0.0",
   "description": "Plugin for semantic-release that returns last release for tag found in the git commit log",
-  "main": "index.js",
+  "main": "src/last-tag-release.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard src/*.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,8 @@
     "find-tag-in-git-log": "1.0.0",
     "npm-registry-client": "7.0.9",
     "npmlog": "2.0.0"
+  },
+  "devDependencies": {
+    "standard": "5.4.1"
   }
 }

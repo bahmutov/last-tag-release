@@ -1,16 +1,19 @@
+'use strict'
+
 const SemanticReleaseError = require('@semantic-release/error')
 
 const npmlog = require('npmlog')
 const RegClient = require('npm-registry-client')
 const findTag = require('find-tag-in-git-log')
 
-function lastTagRelease(pluginConfig, settings, cb) {
+function lastVersion(pluginConfig, settings, cb) {
   // settings {pkg, npm, plugins, options}
   var options = settings.options
   var npm = settings.npm
 
   npmlog.level = npm.loglevel || 'warn'
-  let clientConfig = {log: npmlog}
+
+  const clientConfig = {log: npmlog}
   // disable retries for tests
   if (pluginConfig && pluginConfig.retry) clientConfig.retry = pluginConfig.retry
   const client = new RegClient(clientConfig)
@@ -53,7 +56,7 @@ function lastTagRelease(pluginConfig, settings, cb) {
   })
 }
 
-module.exports = function (pluginConfig, settings, cb) {
+function lastTagRelease(pluginConfig, settings, cb) {
   const n = 5 // number of commits to search
   findTag(n)
     .then(function (tag) {
@@ -63,6 +66,20 @@ module.exports = function (pluginConfig, settings, cb) {
       } else {
         console.log('could not find custom tag in the git log')
       }
-      lastTagRelease(pluginConfig, settings, cb)
+      lastVersion(pluginConfig, settings, cb)
     })
+    .done()
+}
+
+module.exports = lastTagRelease
+
+if (!module.parent) {
+  const config = {}
+  const settings = {
+    pkg: 'last-tag-release',
+    npm: {}
+  }
+  lastTagRelease(config, settings, function (err, info) {
+    console.assert(!err, 'unexpected error', err)
+  })
 }
