@@ -1,15 +1,16 @@
 {
   "name": "last-tag-release",
-  "version": "1.0.0",
   "description": "Plugin for semantic-release that returns last release for tag found in the git commit log",
   "main": "src/last-tag-release.js",
+  "version": "0.0.0-semantic-release",
   "scripts": {
     "test": "standard src/*.js",
-    "commit": "commit-wizard"
+    "commit": "commit-wizard",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bahmutov/last-tag-release.git"
+    "url": "https://github.com/bahmutov/last-tag-release.git"
   },
   "keywords": [
     "git",
@@ -33,11 +34,14 @@
   },
   "devDependencies": {
     "pre-git": "3.1.1",
-    "standard": "5.4.1"
+    "standard": "5.4.1",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "pre-git": {
-      "commit-msg": ["simple"],
+      "commit-msg": [
+        "simple"
+      ],
       "pre-commit": [
         "npm test"
       ],
