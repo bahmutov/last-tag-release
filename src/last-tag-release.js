@@ -6,7 +6,7 @@ const npmlog = require('npmlog')
 const RegClient = require('npm-registry-client')
 const findTag = require('find-tag-in-git-log')
 
-function lastVersion(pluginConfig, settings, cb) {
+function lastVersion (pluginConfig, settings, cb) {
   // settings {pkg, npm, plugins, options}
   var options = settings.options
   var npm = settings.npm
@@ -56,7 +56,7 @@ function lastVersion(pluginConfig, settings, cb) {
   })
 }
 
-function lastTagRelease(pluginConfig, settings, cb) {
+function lastTagRelease (pluginConfig, settings, cb) {
   const n = 5 // number of commits to search
   findTag(n)
     .then(function (tag) {

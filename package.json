@@ -4,7 +4,8 @@
   "description": "Plugin for semantic-release that returns last release for tag found in the git commit log",
   "main": "src/last-tag-release.js",
   "scripts": {
-    "test": "standard src/*.js"
+    "test": "standard src/*.js",
+    "commit": "commit-wizard"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,18 @@
     "npmlog": "2.0.0"
   },
   "devDependencies": {
+    "pre-git": "3.1.1",
     "standard": "5.4.1"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": ["simple"],
+      "pre-commit": [
+        "npm test"
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-merge": []
+    }
   }
 }
