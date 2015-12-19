@@ -19,6 +19,7 @@ function lastVersion (pluginConfig, settings, cb) {
   const client = new RegClient(clientConfig)
 
   const packageUrl = settings.npm.registry + settings.pkg.name.replace('/', '%2f')
+  console.log('packageUrl', packageUrl)
 
   client.get(packageUrl, {
     auth: settings.npm.auth
@@ -27,6 +28,7 @@ function lastVersion (pluginConfig, settings, cb) {
       err.statusCode === 404 ||
       /not found/i.test(err.message)
     )) {
+      console.log('cannot find package', settings.pkg.name)
       return cb(null, {})
     }
 
@@ -76,10 +78,16 @@ module.exports = lastTagRelease
 if (!module.parent) {
   const config = {}
   const settings = {
-    pkg: 'last-tag-release',
-    npm: {}
+    pkg: {
+      name: 'last-tag-release'
+    },
+    npm: {
+      registry: 'http://registry.npmjs.org/'
+    }
   }
   lastTagRelease(config, settings, function (err, info) {
     console.assert(!err, 'unexpected error', err)
+    console.log('info')
+    console.log(info)
   })
 }
