@@ -1,0 +1,33 @@
+{
+  "name": "last-tag-release",
+  "version": "1.0.0",
+  "description": "Plugin for semantic-release that returns last release for tag found in the git commit log",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/last-tag-release.git"
+  },
+  "keywords": [
+    "git",
+    "semver",
+    "npm",
+    "tag",
+    "semantic",
+    "semantic-release"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/last-tag-release/issues"
+  },
+  "homepage": "https://github.com/bahmutov/last-tag-release#readme",
+  "dependencies": {
+    "@semantic-release/error": "1.0.0",
+    "find-tag-in-git-log": "1.0.0",
+    "npm-registry-client": "7.0.9",
+    "npmlog": "2.0.0"
+  }
+}
